@@ -2,7 +2,7 @@
  * @Author: lizhixiang.have@gmail.com
  * @Date: 2019-06-09 14:38:28
  * @LastEditors: lizhixiang.have@gmail.com
- * @LastEditTime: 2019-06-24 23:20:47
+ * @LastEditTime: 2019-06-25 17:30:43
  */
 
 const userModel = require('../modules/user');
@@ -54,7 +54,7 @@ class UserController {
 				ctx.body = statusCode.SUCCESS_200('创建用户成功', token)
 			}
 		} else {
-
+			console.log(ctx)
 			// 参数错误
 			ctx.response.status = 412;
 			ctx.body = statusCode.ERROR_412('创建失败，参数错误');
