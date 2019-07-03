@@ -20,7 +20,8 @@ localhost:3000
 
 ### 实现功能
 * [x] 登录注册
-
+* [x] todolist
+* [x] ~~邮箱~~
 
 ### Links
 
