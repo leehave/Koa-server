@@ -25,4 +25,7 @@ module.exports = function (sequelize, DataTypes) {
 			// 如果指定的表名称本就是复数形式则不变
 			freezeTableName: true
 		})
+		// User.associate = models => {
+		// 	User.hasMany(models.todo)
+		// }
 }

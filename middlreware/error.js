@@ -2,7 +2,7 @@
  * @Author: lizhixiang.have@gmail.com
  * @Date: 2019-06-09 23:44:48
  * @LastEditors: lizhixiang.have@gmail.com
- * @LastEditTime: 2019-06-24 23:20:30
+ * @LastEditTime: 2019-07-20 22:20:07
  */
 
 const jwt = require('jsonwebtoken')
@@ -39,9 +39,8 @@ module.exports = function () {
 				ctx.status = 401;
 				ctx.body = statusCode.ERROR_401('unauthorized，请求需要用户的身份认证！');
 			} else {
-
 				err.status = 404;
-				ctx.body = statusCode.ERROR_404('不存在的用户');
+				ctx.body = statusCode.ERROR_404(err);
 			}
 		}
 	}

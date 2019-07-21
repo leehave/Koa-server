@@ -2,11 +2,10 @@
  * @Author: lizhixiang.have@gmail.com
  * @Date: 2019-07-16 22:47:14
  * @LastEditors: lizhixiang.have@gmail.com
- * @LastEditTime: 2019-07-16 22:48:31
+ * @LastEditTime: 2019-07-21 12:03:03
  */
 const todoModel = require('../modules/todo');
 const statusCode = require('../util/status-code')
-
 class TodoController {
 	/**
 	 * @parma ctx
@@ -14,11 +13,14 @@ class TodoController {
 	 */
 	static async create(ctx) {
 		const todo = ctx.request.body;
-		if(todo.user_id && todo.content){
+		todo.user_id = ctx.user.id;
+		if(todo.content){
 			await todoModel.createTodo(todo)
+			console.log('创建成功这一步',todo)
 			ctx.response.status = 200;
-				ctx.body = statusCode.ERROR_200('创建成功')
+			ctx.body = statusCode.SUCCESS_200('创建成功')
 		}else{
+			console.log('创建失败')
 			ctx.response.status = 412;
 			ctx.body = statusCode.ERROR_412('创建失败')
 		}
@@ -29,7 +31,7 @@ class TodoController {
 	static async getTodoList(ctx){
 		const todoList = await todoModel.findAllTodoList()
 		ctx.response.status = 200
-		ctx.body = statusCode.ERROR_200('查询成功',todoList)
+		ctx.body = statusCode.SUCCESS_200('查询成功',todoList)
 	}
 
 	/***
@@ -40,7 +42,7 @@ class TodoController {
 		if(updataList.user_id && updataList.content){
 			await todoModel.updateTodo(updataList)
 			ctx.response.status = 200;
-				ctx.body = statusCode.ERROR_200('创建成功',updataList)
+			ctx.body = statusCode.SUCCESS_200('创建成功',updataList)
 		}else{
 			ctx.response.status = 412;
 			ctx.body = statusCode.ERROR_412('创建失败')
@@ -62,3 +64,5 @@ class TodoController {
 		}
 	}
 }
+
+module.exports = TodoController

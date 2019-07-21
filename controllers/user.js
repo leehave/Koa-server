@@ -2,7 +2,7 @@
  * @Author: lizhixiang.have@gmail.com
  * @Date: 2019-06-09 14:38:28
  * @LastEditors: lizhixiang.have@gmail.com
- * @LastEditTime: 2019-07-03 21:47:05
+ * @LastEditTime: 2019-07-20 23:29:18
  */
 
 const userModel = require('../modules/user');
@@ -48,7 +48,7 @@ class UserController {
 				}
 
 				// 储存token失效有效期1小时
-				const token = jwt.sign(userToken, secret.sign, { expiresIn: '1h' });
+				const token = jwt.sign(userToken, secret.sign, { expiresIn: '7d' });
 
 				ctx.response.status = 200;
 				ctx.body = statusCode.SUCCESS_200('创建用户成功', token)

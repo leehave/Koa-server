@@ -2,12 +2,13 @@
  * @Author: lizhixiang.have@gmail.com
  * @Date: 2019-06-25 23:18:42
  * @LastEditors: lizhixiang.have@gmail.com
- * @LastEditTime: 2019-07-03 22:20:22
+ * @LastEditTime: 2019-07-21 11:55:34
  */
 
-const db = require('../config/db')
-const Sequelize = db.sequelize
-const Todo = Sequelize.import('../schema/todo.js')
+const db = require('../config/db');
+const Sequelize = db.sequelize;
+const Todo = Sequelize.import('../schema/todo.js');
+Todo.sync({ force: false });
 
 class TodoModel {
 	/**
@@ -16,10 +17,11 @@ class TodoModel {
 	 * @returns {Promise<boolean>}
 	 */
 	static async createTodo(data){
+		let { user_id, content,status } = data;
 		await Todo.create({
-			'user_id': data.user_id,
-			'content': data.content,
-			'status': data.status,
+			'user_id': user_id,
+			'content': content,
+			'status': status,
 		})
 		return true
 	}
@@ -66,6 +68,14 @@ class TodoModel {
 				fields: ['user_id','content', 'status']
 			});
 		return true
+	}
+
+	static async findTodoByName(content) {
+		return await Todo.findOne({
+			where: {
+				content
+			}
+		})
 	}
 }
 
