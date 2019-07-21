@@ -2,7 +2,7 @@
  * @Author: lizhixiang.have@gmail.com
  * @Date: 2019-06-25 23:18:42
  * @LastEditors: lizhixiang.have@gmail.com
- * @LastEditTime: 2019-07-21 11:55:34
+ * @LastEditTime: 2019-07-21 17:43:38
  */
 
 const db = require('../config/db');
@@ -46,7 +46,7 @@ class TodoModel {
 	 */
 	static async findAllTodoList() {
 		return await Todo.findAll({
-			attributes: ['id', 'name']
+			attributes: ['id', 'content','status']
 		})
 	}
 
@@ -56,16 +56,15 @@ class TodoModel {
      * @param data  
      * @returns {Promise.<boolean>}
      */
-	static async updateTodo(id, data) {
+	static async updateTodo(id, status, user_id) {
 		await Todo.update({
-			'user_id': data.user_id,
-			'content': data.content,
-			'status': data.status
+			status
 		}, {
 				where: {
-					id
+					id,
+					user_id
 				},
-				fields: ['user_id','content', 'status']
+				fields: ['status']
 			});
 		return true
 	}

@@ -2,7 +2,7 @@
  * @Author: lizhixiang.have@gmail.com
  * @Date: 2019-06-23 22:06:18
  * @LastEditors: lizhixiang.have@gmail.com
- * @LastEditTime: 2019-07-20 08:12:00
+ * @LastEditTime: 2019-07-21 17:29:18
  */
 
 const Router = require('koa-router');
@@ -26,7 +26,12 @@ router.get('/user/info', UserController.getUserInfo);
 // 获取用户列表
 router.get('/user/list', UserController.getUserList);
 
-// 用户注册
+// todo create
 router.post('/todo/create',TodoController.create);
-
+// todo getAllList
+router.get('/todo/list',TodoController.getTodoList);
+// todo updat
+router.patch('/todo/updata/:id',TodoController.updateTodo);
+// todo delete
+router.delete('/todo/delete/:id',TodoController.delete)
 module.exports = router

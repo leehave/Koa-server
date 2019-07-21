@@ -4,8 +4,8 @@ const sequelize = new Sequelize('tianshe', 'root', '123456', {
 	dialect: 'mysql',
 	operatorsAliases: false,
 	dialectOptions: {
-			charset: "utf8mb4",
-			collate: "utf8mb4_unicode_ci",
+			charset: "utf8",
+		collate: "utf8_general_ci",
 			supportBigNumbers: true,
 			bigNumberStrings: true
 	},
